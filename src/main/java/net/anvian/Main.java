@@ -7,10 +7,11 @@ import net.anvian.util.Log;
 import javax.swing.*;
 
 public class Main {
+   public static double LAUNCHER_VERSION = 0.1;
+
     public static void main(String[] args) {
         if (JavaVersion.get() >= 17){
             new Ui(args);
-            //remove return to see the initError
             return;
         }
         initError();
@@ -23,7 +24,7 @@ public class Main {
         JEditorPane pane = new JEditorPane("text/html", style + err);
         pane.setEditable(false);
         pane.setOpaque(false);
-        JOptionPane.showMessageDialog(null, pane, "Mine Control Launcher  Fatal Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, pane, "Mine Control Launcher Fatal Error", JOptionPane.ERROR_MESSAGE);
         System.exit(1);
     }
 }
