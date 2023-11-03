@@ -1,13 +1,14 @@
-package net.anvian.window;
+package net.anvian.ui;
 
 import javax.swing.*;
 
-public class Window extends JDialog {
+public class Ui extends JDialog {
     private JPanel contend;
-    private JProgressBar progressBar1;
+    private JProgressBar progressBar;
 
-    public Window() {
+    public Ui(String[] args) {
         setUndecorated(true);
+        setVisible(true);
         setContentPane(contend);
         pack();
         setSize(300, 350);
