@@ -1,6 +1,7 @@
 package net.anvian.ui;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Ui extends JDialog {
     private JPanel contend;
@@ -14,6 +15,9 @@ public class Ui extends JDialog {
         pack();
         setSize(300, 350);
         setLocationRelativeTo(null);
+
         titleName.setText("MineControl Launcher v.0.1");
+
+        progressBar.setIndeterminate(true);
     }
 }
