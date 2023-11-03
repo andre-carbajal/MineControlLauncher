@@ -1,7 +1,7 @@
 package net.anvian;
 
-import net.anvian.util.JavaVersion;
 import net.anvian.ui.Ui;
+import net.anvian.util.JavaVersion;
 import net.anvian.util.Log;
 
 import javax.swing.*;
