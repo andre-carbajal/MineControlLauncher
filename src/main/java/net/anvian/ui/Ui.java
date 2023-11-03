@@ -1,12 +1,11 @@
 package net.anvian.ui;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class Ui extends JDialog {
     private JPanel contend;
-    private JProgressBar progressBar;
     private JLabel titleName;
+    public JProgressBar progressBar;
 
     public Ui(String[] args) {
         setUndecorated(true);
