@@ -8,6 +8,7 @@ import javax.swing.*;
 
 public class Main {
    public static double LAUNCHER_VERSION = 0.1;
+   public static Boolean VISIBILITY = true;
 
     public static void main(String[] args) {
         if (JavaVersion.get() >= 17){

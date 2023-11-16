@@ -10,15 +10,15 @@ public class Ui extends JDialog {
     private JProgressBar progressBar1;
     public JLabel logLabel;
 
-    public Ui(String[] args) {
+    public Ui() {
         setUndecorated(true);
-        setVisible(true);
+        setVisible(Main.VISIBILITY);
         setContentPane(contend);
         pack();
         setSize(300, 350);
         setLocationRelativeTo(null);
 
-        titleLabel.setText("  MineControl Launcher v." + Main.LAUNCHER_VERSION);
+        titleLabel.setText(" MineControl Launcher v." + Main.LAUNCHER_VERSION);
 
         progressBar1.setIndeterminate(true);
     }
