@@ -3,7 +3,7 @@ package net.anvian.util;
 import java.io.PrintStream;
 
 public class Log {
-    private static PrintStream consoleOutput = System.out;
+    private static final PrintStream consoleOutput = System.out;
 
     public static void println(String string) {
         printer("[Mine Control Launcher] " + string);
