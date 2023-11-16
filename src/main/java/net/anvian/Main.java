@@ -21,7 +21,7 @@ public class Main {
 
     private static void initError() {
         String style = "<style>p {font-family: Arial; font-size:14;} </style>";
-        String err = String.format("<p>Your Java version (%s) <b>is not supported</b> with this version of launcher!</p>", JavaVersion.get()) + "<p>Please make sure that you meet one of the following requirements:<br> 1. Use a JDK that bundles JavaFX<br> 2. Update to Java 17 <i>(MineControl Launcher will automatically download JavaFX)</i></p>";
+        String err = String.format("<p>Your Java version (%s) <b>is not supported</b> with this version of launcher!</p>", JavaVersion.get()) + "<p>Please make sure that you meet one of the following requirements:<br> 1. Update to Java 17 <i>(MineControl Launcher will automatically download JavaFX)</i></p>";
         Log.error(err);
         JEditorPane pane = new JEditorPane("text/html", style + err);
         pane.setEditable(false);
