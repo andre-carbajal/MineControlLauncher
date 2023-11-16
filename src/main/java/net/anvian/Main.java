@@ -12,7 +12,8 @@ public class Main {
 
     public static void main(String[] args) {
         if (JavaVersion.get() >= 17){
-            new Ui(args);
+            new Ui();
+            App.init();
             return;
         }
         initError();
