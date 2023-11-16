@@ -16,13 +16,13 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public class JavaFxDownloader {
+    private static final String fileName = "javafx-sdk-17.0.9.zip";
+    private static final String mainFolder = ".MineControl";
+    private static final String userHome = System.getProperty("user.home");
     public static void downloadJavaFx() throws IOException {
         String url = selectUrl();
-        String fileName = "javafx-sdk.zip";
-        String userHome = System.getProperty("user.home");
-        Path dirPath = Paths.get(userHome, ".MineControl");
+        Path dirPath = Paths.get(userHome, mainFolder);
 
-        createDirectory(dirPath);
         Path filePath = dirPath.resolve(fileName);
         downloadFile(url, filePath);
         unzipFile(filePath, dirPath);
@@ -50,12 +50,6 @@ public class JavaFxDownloader {
                 throw new UnsupportedOperationException("Unsupported operating system");
         }
         return url;
-    }
-
-    private static void createDirectory(Path dirPath) throws IOException {
-        if (!Files.exists(dirPath)) {
-            Files.createDirectories(dirPath);
-        }
     }
 
     private static void downloadFile(String url, Path filePath) throws IOException {
@@ -111,5 +105,32 @@ public class JavaFxDownloader {
 
     private static void deleteFile(Path filePath) throws IOException {
         Files.delete(filePath);
+    }
+
+    public static boolean checkJavaFxInstalledCorrectly() {
+        Path dirPath = Paths.get(userHome, mainFolder, "javafx-sdk-17.0.9", "lib");
+        String[] requiredFiles = {
+                "javafx.base.jar",
+                "javafx.controls.jar",
+                "javafx.fxml.jar",
+                "javafx.graphics.jar",
+                "javafx.media.jar",
+                "javafx.properties",
+                "javafx.swing.jar",
+                "javafx.web.jar",
+                "javafx-swt.jar"
+        };
+
+        if (Files.exists(dirPath)) {
+            for (String file : requiredFiles) {
+                Path filePath = dirPath.resolve(file);
+                if (!Files.exists(filePath)) {
+                    return false;
+                }
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 }
