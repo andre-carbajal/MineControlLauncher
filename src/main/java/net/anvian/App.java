@@ -1,6 +1,7 @@
 package net.anvian;
 
-import net.anvian.util.JavaFxDownloader;
+import net.anvian.util.download.Downloader;
+import net.anvian.util.download.JavaFxDownloader;
 import net.anvian.util.Log;
 
 import java.io.IOException;
@@ -12,6 +13,8 @@ import java.util.Comparator;
 import java.util.stream.Stream;
 
 public class App {
+
+    private static final Downloader downloader = new JavaFxDownloader();
 
     public static void init() {
         Path dirPath = Paths.get(Main.USER_HOME, Main.MAIN_FOLDER);
@@ -30,7 +33,7 @@ public class App {
         if (!JavaFxDownloader.checkJavaFxInstalledCorrectly()) {
             Path folder = dirPath.resolve(Main.JAVA_FX_FOLDER);
             deleteDirectoryRecursively(folder);
-            JavaFxDownloader.downloadJavaFx();
+            downloader.download();
         }
     }
 

@@ -1,4 +1,4 @@
-package net.anvian.util;
+package net.anvian.util.os;
 
 import java.util.Locale;
 

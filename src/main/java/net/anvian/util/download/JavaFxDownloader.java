@@ -1,6 +1,7 @@
-package net.anvian.util;
+package net.anvian.util.download;
 
 import net.anvian.Main;
+import net.anvian.util.os.OsChecker;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,8 +18,10 @@ import java.nio.file.Paths;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-public class JavaFxDownloader {
-    public static void downloadJavaFx() throws IOException {
+public class JavaFxDownloader implements Downloader {
+
+    @Override
+    public void download() throws IOException {
         String url = selectUrl();
         Path dirPath = Paths.get(Main.USER_HOME, Main.MAIN_FOLDER);
 

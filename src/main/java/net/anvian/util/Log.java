@@ -1,5 +1,7 @@
 package net.anvian.util;
 
+import net.anvian.util.StringUtils;
+
 import java.io.PrintStream;
 
 public class Log {

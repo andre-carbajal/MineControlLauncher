@@ -1,4 +1,4 @@
-package net.anvian.util;
+package net.anvian.util.os;
 
 public class JavaVersion {
     public static final int VERSION_OFFSET = 44;
