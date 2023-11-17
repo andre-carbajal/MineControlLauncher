@@ -1,5 +1,7 @@
 package net.anvian.util;
 
+import net.anvian.Main;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -16,14 +18,11 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public class JavaFxDownloader {
-    private static final String fileName = "javafx-sdk-17.0.9.zip";
-    private static final String mainFolder = ".MineControl";
-    private static final String userHome = System.getProperty("user.home");
     public static void downloadJavaFx() throws IOException {
         String url = selectUrl();
-        Path dirPath = Paths.get(userHome, mainFolder);
+        Path dirPath = Paths.get(Main.USER_HOME, Main.MAIN_FOLDER);
 
-        Path filePath = dirPath.resolve(fileName);
+        Path filePath = dirPath.resolve(Main.JAVA_FX_FOLDER + ".zip");
         downloadFile(url, filePath);
         unzipFile(filePath, dirPath);
         deleteFile(filePath);
@@ -108,7 +107,7 @@ public class JavaFxDownloader {
     }
 
     public static boolean checkJavaFxInstalledCorrectly() {
-        Path dirPath = Paths.get(userHome, mainFolder, "javafx-sdk-17.0.9", "lib");
+        Path dirPath = Paths.get(Main.USER_HOME, Main.MAIN_FOLDER, Main.JAVA_FX_FOLDER, "lib");
         String[] requiredFiles = {
                 "javafx.base.jar",
                 "javafx.controls.jar",

@@ -1,6 +1,7 @@
 package net.anvian;
 
 import net.anvian.util.JavaFxDownloader;
+import net.anvian.util.Log;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -11,25 +12,25 @@ import java.util.Comparator;
 import java.util.stream.Stream;
 
 public class App {
+
     public static void init() {
-        String userHome = System.getProperty("user.home");
-        Path dirPath = Paths.get(userHome, ".MineControl");
-        if(!Files.exists(dirPath)){
+        Path dirPath = Paths.get(Main.USER_HOME, Main.MAIN_FOLDER);
+        if (!Files.exists(dirPath)) {
             try {
                 createDirectory(dirPath);
-                JavaFxDownloader.downloadJavaFx();
+                downloadJavaFxIfNecessary(dirPath);
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                Log.error("An error occurred while initializing the application", e);
+                throw new RuntimeException("An error occurred while initializing the application", e);
             }
         }
-        if (!JavaFxDownloader.checkJavaFxInstalledCorrectly()){
-            Path folder = Paths.get(userHome, ".MineControl", "javafx-sdk-17.0.9");
-            try {
-                deleteDirectoryRecursively(folder);
-                JavaFxDownloader.downloadJavaFx();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+    }
+
+    private static void downloadJavaFxIfNecessary(Path dirPath) throws IOException {
+        if (!JavaFxDownloader.checkJavaFxInstalledCorrectly()) {
+            Path folder = dirPath.resolve(Main.JAVA_FX_FOLDER);
+            deleteDirectoryRecursively(folder);
+            JavaFxDownloader.downloadJavaFx();
         }
     }
 
