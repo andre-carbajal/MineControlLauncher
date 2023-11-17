@@ -15,6 +15,7 @@
     </properties>
 
     <dependencies>
+        <!-- Jakarta -->
         <dependency>
             <groupId>jakarta.validation</groupId>
             <artifactId>jakarta.validation-api</artifactId>
