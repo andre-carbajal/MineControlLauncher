@@ -12,7 +12,7 @@ public class Ui extends JDialog {
 
     public Ui() {
         setUndecorated(true);
-        setVisible(Main.VISIBILITY);
+        setVisible(true);
         setContentPane(contend);
         pack();
         setSize(300, 350);
