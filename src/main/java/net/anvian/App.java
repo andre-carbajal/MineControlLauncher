@@ -19,32 +19,30 @@ public class App {
     public static void init() {
         Path dirPath = Paths.get(Main.USER_HOME, Main.MAIN_FOLDER);
         if (!Files.exists(dirPath)) {
-            try {
-                Files.createDirectories(dirPath);
-                downloadJavaFxIfNecessary(dirPath);
-            } catch (IOException e) {
-                Log.error("An error occurred while initializing the application", e);
-                throw new RuntimeException("An error occurred while initializing the application", e);
-            }
+            createDirectoriesAndDownloadJavaFxIfNecessary(dirPath);
         }
-        if (!Files.exists(dirPath.resolve(Main.JAVA_FX_FOLDER)) || !JavaFxDownloader.checkJavaFxInstalledCorrectly() ) {
-            try {
-                Path folder = dirPath.resolve(Main.JAVA_FX_FOLDER);
-                deleteDirectoryRecursively(folder);
-                downloader.download();
-            } catch (IOException e) {
-                Log.error("An error occurred while initializing the application", e);
-                throw new RuntimeException("An error occurred while initializing the application", e);
-            }
+        if (!Files.exists(dirPath.resolve(Main.JAVA_FX_FOLDER)) || !JavaFxDownloader.checkJavaFxInstalledCorrectly()) {
+            downloadJavaFxIfNecessary(dirPath);
         }
-        runJarWithJavaFx(dirPath + "/MineControlFx.jar", dirPath.resolve(Main.JAVA_FX_FOLDER)+"/lib");
+        runJarWithJavaFx(dirPath + "/MineControlFx.jar", dirPath.resolve(Main.JAVA_FX_FOLDER) + "/lib");
     }
 
-    private static void downloadJavaFxIfNecessary(Path dirPath) throws IOException {
-        if (!JavaFxDownloader.checkJavaFxInstalledCorrectly()) {
+    private static void createDirectoriesAndDownloadJavaFxIfNecessary(Path dirPath) {
+        try {
+            Files.createDirectories(dirPath);
+            downloadJavaFxIfNecessary(dirPath);
+        } catch (IOException e) {
+            throw new RuntimeException("An error occurred while initializing the application", e);
+        }
+    }
+
+    private static void downloadJavaFxIfNecessary(Path dirPath) {
+        try {
             Path folder = dirPath.resolve(Main.JAVA_FX_FOLDER);
             deleteDirectoryRecursively(folder);
             downloader.download();
+        } catch (IOException e) {
+            throw new RuntimeException("An error occurred while initializing the application", e);
         }
     }
 
