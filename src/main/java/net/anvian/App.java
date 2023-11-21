@@ -1,8 +1,8 @@
 package net.anvian;
 
+import net.anvian.util.Log;
 import net.anvian.util.download.Downloader;
 import net.anvian.util.download.JavaFxDownloader;
-import net.anvian.util.Log;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -20,13 +20,24 @@ public class App {
         Path dirPath = Paths.get(Main.USER_HOME, Main.MAIN_FOLDER);
         if (!Files.exists(dirPath)) {
             try {
-                createDirectory(dirPath);
+                Files.createDirectories(dirPath);
                 downloadJavaFxIfNecessary(dirPath);
             } catch (IOException e) {
                 Log.error("An error occurred while initializing the application", e);
                 throw new RuntimeException("An error occurred while initializing the application", e);
             }
         }
+        if (!Files.exists(dirPath.resolve(Main.JAVA_FX_FOLDER)) || !JavaFxDownloader.checkJavaFxInstalledCorrectly() ) {
+            try {
+                Path folder = dirPath.resolve(Main.JAVA_FX_FOLDER);
+                deleteDirectoryRecursively(folder);
+                downloader.download();
+            } catch (IOException e) {
+                Log.error("An error occurred while initializing the application", e);
+                throw new RuntimeException("An error occurred while initializing the application", e);
+            }
+        }
+        runJarWithJavaFx(dirPath + "/MineControlFx.jar", dirPath.resolve(Main.JAVA_FX_FOLDER)+"/lib");
     }
 
     private static void downloadJavaFxIfNecessary(Path dirPath) throws IOException {
@@ -34,12 +45,6 @@ public class App {
             Path folder = dirPath.resolve(Main.JAVA_FX_FOLDER);
             deleteDirectoryRecursively(folder);
             downloader.download();
-        }
-    }
-
-    private static void createDirectory(Path dirPath) throws IOException {
-        if (!Files.exists(dirPath)) {
-            Files.createDirectories(dirPath);
         }
     }
 
@@ -57,6 +62,23 @@ public class App {
             }
         } else {
             Files.deleteIfExists(path);
+        }
+    }
+
+    private static void runJarWithJavaFx(String jarPath, String javaFxPath) {
+        try {
+            ProcessBuilder pb = new ProcessBuilder(
+                    "java",
+                    "--module-path", javaFxPath,
+                    "--add-modules", "javafx.controls,javafx.fxml",
+                    "-jar", jarPath
+            );
+            pb.inheritIO();
+            Process process = pb.start();
+            process.waitFor();
+        } catch (IOException | InterruptedException e) {
+            Log.error("An error occurred while running the .jar file", e);
+            throw new RuntimeException("An error occurred while running the .jar file", e);
         }
     }
 }

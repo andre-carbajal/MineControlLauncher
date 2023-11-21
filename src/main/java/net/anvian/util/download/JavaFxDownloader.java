@@ -110,7 +110,8 @@ public class JavaFxDownloader implements Downloader {
     }
 
     public static boolean checkJavaFxInstalledCorrectly() {
-        Path dirPath = Paths.get(Main.USER_HOME, Main.MAIN_FOLDER, Main.JAVA_FX_FOLDER, "lib");
+        Path dirPath = Paths.get(Main.USER_HOME, Main.MAIN_FOLDER, Main.JAVA_FX_FOLDER);
+        Path dirPathLib = Paths.get(Main.USER_HOME, Main.MAIN_FOLDER, Main.JAVA_FX_FOLDER, "lib");
         String[] requiredFiles = {
                 "javafx.base.jar",
                 "javafx.controls.jar",
@@ -123,9 +124,9 @@ public class JavaFxDownloader implements Downloader {
                 "javafx-swt.jar"
         };
 
-        if (Files.exists(dirPath)) {
+        if (Files.exists(dirPath) && Files.exists(dirPathLib)) {
             for (String file : requiredFiles) {
-                Path filePath = dirPath.resolve(file);
+                Path filePath = dirPathLib.resolve(file);
                 if (!Files.exists(filePath)) {
                     return false;
                 }
