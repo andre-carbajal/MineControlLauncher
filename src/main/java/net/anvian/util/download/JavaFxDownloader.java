@@ -30,7 +30,7 @@ public class JavaFxDownloader implements Downloader {
         Path filePath = dirPath.resolve(Main.JAVA_FX_FOLDER + ".zip");
         downloadFile(url, filePath);
         unzipFile(filePath, dirPath);
-        deleteFile(filePath);
+        Files.delete(filePath);
     }
 
     private static String selectUrl() {
@@ -38,17 +38,23 @@ public class JavaFxDownloader implements Downloader {
         switch (OsChecker.getOperatingSystemType()) {
             case Windows:
                 url = "https://download2.gluonhq.com/openjfx/17.0.9/openjfx-17.0.9_windows-x64_bin-sdk.zip";
+                Ui.getInstance().setLogLabel("Downloading JavaFX for Windows");
                 break;
             case MacOS:
-                if (OsChecker.getArchitectureType() == OsChecker.ArchType.amd64)
+                if (OsChecker.getArchitectureType() == OsChecker.ArchType.amd64){
                     url = "https://download2.gluonhq.com/openjfx/17.0.9/openjfx-17.0.9_osx-x64_bin-sdk.zip";
-                else if (OsChecker.getArchitectureType() == OsChecker.ArchType.aarch64)
+                    Ui.getInstance().setLogLabel("Downloading JavaFX for MacOS amd64");
+                }
+                else if (OsChecker.getArchitectureType() == OsChecker.ArchType.aarch64){
                     url = "https://download2.gluonhq.com/openjfx/17.0.9/openjfx-17.0.9_osx-aarch64_bin-sdk.zip";
+                    Ui.getInstance().setLogLabel("Downloading JavaFX for MacOS aarch64");
+                }
                 else
                     throw new UnsupportedOperationException("Unsupported architecture");
                 break;
             case Linux:
                 url = "https://download2.gluonhq.com/openjfx/17.0.9/openjfx-17.0.9_linux-x64_bin-sdk.zip";
+                Ui.getInstance().setLogLabel("Downloading JavaFX for Linux");
                 break;
             default:
                 throw new UnsupportedOperationException("Unsupported operating system");
@@ -106,10 +112,6 @@ public class JavaFxDownloader implements Downloader {
             }
             zis.closeEntry();
         }
-    }
-
-    private static void deleteFile(Path filePath) throws IOException {
-        Files.delete(filePath);
     }
 
     public static boolean checkJavaFxInstalledCorrectly() {

@@ -9,10 +9,6 @@ public class Log {
         printer("[Mine Control Launcher] " + string);
     }
 
-    public static void info(String string) {
-        println(string);
-    }
-
     public static void warn(String string) {
         printer("[Mine Control Launcher] [WARN] " + string);
     }

@@ -1,5 +1,6 @@
 package net.anvian;
 
+import net.anvian.ui.Ui;
 import net.anvian.util.Log;
 import net.anvian.util.download.Downloader;
 import net.anvian.util.download.JavaFxDownloader;
@@ -23,6 +24,7 @@ public class App {
         if (!Files.exists(dirPath.resolve(Main.JAVA_FX_FOLDER)) || !JavaFxDownloader.checkJavaFxInstalledCorrectly()) {
             downloadJavaFxIfNecessary(dirPath);
         }
+        Ui.getInstance().setLogLabel("The application is about to run");
         runJarWithJavaFx(dirPath + "/MineControlFx.jar", dirPath.resolve(Main.JAVA_FX_FOLDER) + "/lib");
     }
 
