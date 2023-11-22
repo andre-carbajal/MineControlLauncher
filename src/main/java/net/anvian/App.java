@@ -5,7 +5,6 @@ import net.anvian.util.download.Downloader;
 import net.anvian.util.download.JavaFxDownloader;
 
 import java.io.IOException;
-import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -32,7 +31,7 @@ public class App {
             Files.createDirectories(dirPath);
             downloadJavaFxIfNecessary(dirPath);
         } catch (IOException e) {
-            throw new RuntimeException("An error occurred while initializing the application", e);
+            Log.error("An error occurred while initializing the application", e);
         }
     }
 
@@ -42,7 +41,7 @@ public class App {
             deleteDirectoryRecursively(folder);
             downloader.download();
         } catch (IOException e) {
-            throw new RuntimeException("An error occurred while initializing the application", e);
+            Log.error("An error occurred while downloading JavaFX", e);
         }
     }
 
@@ -54,7 +53,7 @@ public class App {
                             try {
                                 Files.deleteIfExists(p);
                             } catch (IOException e) {
-                                throw new UncheckedIOException(e);
+                                Log.error("An error occurred while deleting the directory", e);
                             }
                         });
             }
@@ -71,12 +70,12 @@ public class App {
                     "--add-modules", "javafx.controls,javafx.fxml",
                     "-jar", jarPath
             );
-            pb.inheritIO();
+
             Process process = pb.start();
-            process.waitFor();
-        } catch (IOException | InterruptedException e) {
+
+            System.exit(0);
+        } catch (IOException e) {
             Log.error("An error occurred while running the .jar file", e);
-            throw new RuntimeException("An error occurred while running the .jar file", e);
         }
     }
 }
