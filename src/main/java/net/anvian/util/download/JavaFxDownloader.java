@@ -1,6 +1,8 @@
 package net.anvian.util.download;
 
 import net.anvian.Main;
+import net.anvian.ui.Ui;
+import net.anvian.util.Log;
 import net.anvian.util.os.OsChecker;
 
 import java.io.File;
@@ -72,7 +74,8 @@ public class JavaFxDownloader implements Downloader {
 
                 totalBytesRead += bytesRead;
                 double progress = (double) totalBytesRead / fileSize * 100;
-                System.out.printf("Download progress: %.2f percent%n", progress);
+                Log.println(String.format("Download progress: %.2f percent", progress));
+                Ui.getInstance().setLogLabel(String.format("Download progress: %.2f percent", progress));
             }
         }
     }
