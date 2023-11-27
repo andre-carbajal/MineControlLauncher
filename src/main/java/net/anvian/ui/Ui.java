@@ -4,7 +4,7 @@ import net.anvian.Main;
 
 import javax.swing.*;
 
-public class Ui extends JDialog {
+public class Ui extends JFrame {
     private static Ui instance;
     private JPanel contend;
     private JLabel titleLabel;
@@ -12,15 +12,16 @@ public class Ui extends JDialog {
     private JLabel logLabel;
 
     public Ui() {
-        setUndecorated(true);
         setVisible(true);
         setContentPane(contend);
         pack();
+
         setSize(300, 350);
         setLocationRelativeTo(null);
+        setResizable(false);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         titleLabel.setText(" MineControl Launcher v." + Main.LAUNCHER_VERSION);
-
         progressBar1.setIndeterminate(true);
     }
 
