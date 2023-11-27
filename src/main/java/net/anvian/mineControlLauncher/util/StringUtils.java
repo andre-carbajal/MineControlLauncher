@@ -1,4 +1,4 @@
-package net.anvian.util;
+package net.anvian.mineControlLauncher.util;
 
 import jakarta.validation.constraints.NotNull;
 

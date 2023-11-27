@@ -1,8 +1,8 @@
-package net.anvian;
+package net.anvian.mineControlLauncher;
 
-import net.anvian.ui.Ui;
-import net.anvian.util.error.ErrorHandler;
-import net.anvian.util.os.JavaVersion;
+import net.anvian.mineControlLauncher.ui.Ui;
+import net.anvian.mineControlLauncher.util.error.ErrorHandler;
+import net.anvian.mineControlLauncher.util.os.JavaVersion;
 
 public class Main {
 

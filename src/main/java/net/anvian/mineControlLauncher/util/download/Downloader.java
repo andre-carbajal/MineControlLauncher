@@ -1,4 +1,4 @@
-package net.anvian.util.download;
+package net.anvian.mineControlLauncher.util.download;
 
 import java.io.IOException;
 

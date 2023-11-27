@@ -1,9 +1,9 @@
-package net.anvian.util.download;
+package net.anvian.mineControlLauncher.util.download;
 
-import net.anvian.Main;
-import net.anvian.ui.Ui;
-import net.anvian.util.Log;
-import net.anvian.util.os.OsChecker;
+import net.anvian.mineControlLauncher.Main;
+import net.anvian.mineControlLauncher.ui.Ui;
+import net.anvian.mineControlLauncher.util.Log;
+import net.anvian.mineControlLauncher.util.os.OsChecker;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -1,9 +1,9 @@
-package net.anvian;
+package net.anvian.mineControlLauncher;
 
-import net.anvian.ui.Ui;
-import net.anvian.util.Log;
-import net.anvian.util.download.Downloader;
-import net.anvian.util.download.JavaFxDownloader;
+import net.anvian.mineControlLauncher.ui.Ui;
+import net.anvian.mineControlLauncher.util.Log;
+import net.anvian.mineControlLauncher.util.download.Downloader;
+import net.anvian.mineControlLauncher.util.download.JavaFxDownloader;
 
 import java.io.IOException;
 import java.nio.file.Files;

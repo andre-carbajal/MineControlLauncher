@@ -1,6 +1,6 @@
-package net.anvian.ui;
+package net.anvian.mineControlLauncher.ui;
 
-import net.anvian.Main;
+import net.anvian.mineControlLauncher.Main;
 
 import javax.swing.*;
 

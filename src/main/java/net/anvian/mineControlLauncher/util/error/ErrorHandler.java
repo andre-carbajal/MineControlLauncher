@@ -1,7 +1,7 @@
-package net.anvian.util.error;
+package net.anvian.mineControlLauncher.util.error;
 
-import net.anvian.util.Log;
-import net.anvian.util.os.JavaVersion;
+import net.anvian.mineControlLauncher.util.Log;
+import net.anvian.mineControlLauncher.util.os.JavaVersion;
 
 import javax.swing.*;
 
