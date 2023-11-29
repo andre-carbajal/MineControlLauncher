@@ -87,6 +87,8 @@ public class JavaFxDownloader implements Downloader {
     }
 
     private static void unzipFile(Path filePath, Path dirPath) throws IOException {
+        Log.println("Unzipping JavaFX");
+        GuiInstance.getInstance().setLogLabel("Unzipping JavaFX");
         try (ZipInputStream zis = new ZipInputStream(new FileInputStream(filePath.toFile()))) {
             ZipEntry zipEntry = zis.getNextEntry();
             while (zipEntry != null) {
