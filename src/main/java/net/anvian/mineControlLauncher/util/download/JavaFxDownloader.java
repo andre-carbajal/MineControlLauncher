@@ -1,7 +1,7 @@
 package net.anvian.mineControlLauncher.util.download;
 
 import net.anvian.mineControlLauncher.Main;
-import net.anvian.mineControlLauncher.gui.Gui;
+import net.anvian.mineControlLauncher.gui.GuiInstance;
 import net.anvian.mineControlLauncher.util.Log;
 import net.anvian.mineControlLauncher.util.os.OsChecker;
 
@@ -38,23 +38,23 @@ public class JavaFxDownloader implements Downloader {
         switch (OsChecker.getOperatingSystemType()) {
             case Windows:
                 url = "https://download2.gluonhq.com/openjfx/17.0.9/openjfx-17.0.9_windows-x64_bin-sdk.zip";
-                Gui.getInstance().setLogLabel("Downloading JavaFX for Windows");
+                GuiInstance.getInstance().setLogLabel("Downloading JavaFX for Windows");
                 break;
             case MacOS:
                 if (OsChecker.getArchitectureType() == OsChecker.ArchType.amd64){
                     url = "https://download2.gluonhq.com/openjfx/17.0.9/openjfx-17.0.9_osx-x64_bin-sdk.zip";
-                    Gui.getInstance().setLogLabel("Downloading JavaFX for MacOS amd64");
+                    GuiInstance.getInstance().setLogLabel("Downloading JavaFX for MacOS amd64");
                 }
                 else if (OsChecker.getArchitectureType() == OsChecker.ArchType.aarch64){
                     url = "https://download2.gluonhq.com/openjfx/17.0.9/openjfx-17.0.9_osx-aarch64_bin-sdk.zip";
-                    Gui.getInstance().setLogLabel("Downloading JavaFX for MacOS aarch64");
+                    GuiInstance.getInstance().setLogLabel("Downloading JavaFX for MacOS aarch64");
                 }
                 else
                     throw new UnsupportedOperationException("Unsupported architecture");
                 break;
             case Linux:
                 url = "https://download2.gluonhq.com/openjfx/17.0.9/openjfx-17.0.9_linux-x64_bin-sdk.zip";
-                Gui.getInstance().setLogLabel("Downloading JavaFX for Linux");
+                GuiInstance.getInstance().setLogLabel("Downloading JavaFX for Linux");
                 break;
             default:
                 throw new UnsupportedOperationException("Unsupported operating system");
@@ -81,7 +81,7 @@ public class JavaFxDownloader implements Downloader {
                 totalBytesRead += bytesRead;
                 double progress = (double) totalBytesRead / fileSize * 100;
                 Log.println(String.format("Download progress: %.2f percent", progress));
-                Gui.getInstance().setLogLabel(String.format("Download progress: %.2f percent", progress));
+                GuiInstance.getInstance().setLogLabel(String.format("Download progress: %.2f percent", progress));
             }
         }
     }

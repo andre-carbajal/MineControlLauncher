@@ -1,6 +1,6 @@
 package net.anvian.mineControlLauncher;
 
-import net.anvian.mineControlLauncher.gui.Gui;
+import net.anvian.mineControlLauncher.gui.GuiInstance;
 import net.anvian.mineControlLauncher.util.Log;
 import net.anvian.mineControlLauncher.util.download.Downloader;
 import net.anvian.mineControlLauncher.util.download.JavaFxDownloader;
@@ -24,7 +24,7 @@ public class App {
         if (!Files.exists(dirPath.resolve(Main.JAVA_FX_FOLDER)) || !JavaFxDownloader.checkJavaFxInstalledCorrectly()) {
             downloadJavaFxIfNecessary(dirPath);
         }
-        Gui.getInstance().setLogLabel("The application is about to run");
+        GuiInstance.getInstance().setLogLabel("The application is about to run");
         runJarWithJavaFx(dirPath + "/MineControlFx.jar", dirPath.resolve(Main.JAVA_FX_FOLDER) + "/lib");
     }
 

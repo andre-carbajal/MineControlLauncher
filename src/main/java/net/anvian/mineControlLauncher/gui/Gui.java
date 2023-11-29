@@ -1,26 +1,23 @@
 package net.anvian.mineControlLauncher.gui;
 
-import net.anvian.mineControlLauncher.Main;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
 public class Gui extends JFrame {
 
-    private static Gui instance;
     private JProgressBar progressBar;
     private JLabel logLabel;
     private JLabel titleLabel;
 
-    public Gui() {
+    protected Gui(String version) {
         initComponents();
 
         setVisible(true);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        titleLabel.setText("MineControl Launcher v." + Main.LAUNCHER_VERSION);
+        titleLabel.setText("MineControl Launcher v." + version);
         progressBar.setIndeterminate(true);
     }
 
@@ -87,13 +84,6 @@ public class Gui extends JFrame {
 
         pack();
         setLocationRelativeTo(null);
-    }
-
-    public static Gui getInstance() {
-        if (instance == null) {
-            instance = new Gui();
-        }
-        return instance;
     }
 
     public void setLogLabel(String text) {
