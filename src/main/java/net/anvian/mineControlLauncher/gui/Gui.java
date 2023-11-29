@@ -3,6 +3,7 @@ package net.anvian.mineControlLauncher.gui;
 import net.anvian.mineControlLauncher.Main;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.Objects;
 
 public class Gui extends JFrame {
@@ -16,7 +17,6 @@ public class Gui extends JFrame {
         initComponents();
 
         setVisible(true);
-        setSize(300, 350);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -31,11 +31,18 @@ public class Gui extends JFrame {
         JLabel icon = new JLabel();
         logLabel = new JLabel();
         progressBar = new JProgressBar();
+        
+        
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Launcher");
+        setPreferredSize(new Dimension(300, 350));
+        setResizable(false);
+        setSize(new Dimension(300, 350));
+
+        titleLabel.setHorizontalAlignment(SwingConstants.LEFT);
 
         icon.setHorizontalAlignment(SwingConstants.CENTER);
         icon.setIcon(new ImageIcon(Objects.requireNonNull(Gui.class.getResource("/icon.png"))));
-
-        logLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         GroupLayout contendLayout = new GroupLayout(contend);
         contend.setLayout(contendLayout);
@@ -44,27 +51,27 @@ public class Gui extends JFrame {
                         .addGroup(contendLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(contendLayout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                                        .addComponent(icon, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(logLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(progressBar, GroupLayout.PREFERRED_SIZE, 252, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(progressBar, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(logLabel)
+                                        .addComponent(icon, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addContainerGap())
                         .addGroup(contendLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(titleLabel)
-                                .addGap(344, 344, 344))
+                                .addComponent(titleLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(6, 6, 6))
         );
         contendLayout.setVerticalGroup(
                 contendLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(contendLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(titleLabel)
-                                .addGap(40, 40, 40)
+                                .addGap(51, 51, 51)
                                 .addComponent(icon)
-                                .addGap(28, 28, 28)
+                                .addGap(38, 38, 38)
                                 .addComponent(logLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(progressBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(106, Short.MAX_VALUE))
+                                .addComponent(progressBar, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         GroupLayout layout = new GroupLayout(getContentPane());

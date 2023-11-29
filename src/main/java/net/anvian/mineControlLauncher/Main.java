@@ -1,6 +1,6 @@
 package net.anvian.mineControlLauncher;
 
-import net.anvian.mineControlLauncher.ui.Ui;
+import net.anvian.mineControlLauncher.gui.Gui;
 import net.anvian.mineControlLauncher.util.error.ErrorHandler;
 import net.anvian.mineControlLauncher.util.os.JavaVersion;
 
@@ -15,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) {
         if (JavaVersion.get() >= 17) {
-            new Ui();
+            new Gui();
             App.init();
             return;
         }
