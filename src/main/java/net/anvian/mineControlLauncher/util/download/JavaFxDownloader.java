@@ -80,8 +80,8 @@ public class JavaFxDownloader implements Downloader {
 
                 totalBytesRead += bytesRead;
                 double progress = (double) totalBytesRead / fileSize * 100;
-                Log.println(String.format("Download progress: %.2f percent", progress));
-                GuiInstance.getInstance().setLogLabel(String.format("Download progress: %.2f percent", progress));
+                Log.println(String.format("Download progress: %.2f %%", progress));
+                GuiInstance.getInstance().setLogLabel(String.format("Download progress: %.2f %%", progress));
             }
         }
     }
