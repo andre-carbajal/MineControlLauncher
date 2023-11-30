@@ -2,19 +2,21 @@ package net.anvian.mineControlLauncher.util.download;
 
 import net.anvian.mineControlLauncher.Main;
 import net.anvian.mineControlLauncher.util.Log;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Scanner;
+import java.util.Objects;
 
 public class ApplicationDownloader implements Downloader{
+    private static final OkHttpClient client = new OkHttpClient();
+
     @Override
     public void download() throws IOException {
         String user = "andre-carbajal";
@@ -22,40 +24,29 @@ public class ApplicationDownloader implements Downloader{
         String repository_name = "McPackGenerator";
 
         String urlAPI = String.format("https://api.github.com/repos/%s/%s/releases/latest", user, repository_name);
-        URL url = new URL(urlAPI);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        Request request = new Request.Builder().url(urlAPI).build();
 
-        connection.setRequestMethod("GET");
-        connection.connect();
+        try(Response response = client.newCall(request).execute()){
+            if (!response.isSuccessful()){
+                Log.error("The request was not successful. Response code: " + response.code());
+                return;
+            }
 
-        int responseCode = connection.getResponseCode();
-
-        if (responseCode == HttpURLConnection.HTTP_OK) {
-            InputStream inputStream = connection.getInputStream();
-            String respuesta = convertirInputStreamAString(inputStream);
-
-            String enlaceDescarga = getDownloadUrl(respuesta);
+            String answer = Objects.requireNonNull(response.body()).string();
+            String downloadLink = getDownloadUrl(answer);
 
             Path dirPath = Paths.get(Main.USER_HOME, Main.MAIN_FOLDER);
-            Path filePath = dirPath.resolve("MineControlFx_"+ getTagName(respuesta) +".jar");
+            Path filePath = dirPath.resolve("MineControlFx_"+ getTagName(answer) +".jar");
 
-            downloadFile(enlaceDescarga, filePath, "Application");
-            Log.println("¡Descarga exitosa!");
-        } else {
-            Log.error("La solicitud no fue exitosa. Código de respuesta: " + responseCode);
+            downloadFile(downloadLink, filePath, "Application");
+            Log.println("Application downloaded successfully");
         }
-
-        connection.disconnect();
-    }
-    private static String convertirInputStreamAString(InputStream inputStream) {
-        Scanner scanner = new Scanner(inputStream).useDelimiter("\\A");
-        return scanner.hasNext() ? scanner.next() : "";
     }
 
-    private static String getDownloadUrl(String respuesta) {
+    private static String getDownloadUrl(String answer) {
         String downloadLink = "";
         try {
-            JSONObject jsonObject = new JSONObject(respuesta);
+            JSONObject jsonObject = new JSONObject(answer);
 
             JSONArray assets = jsonObject.getJSONArray("assets");
             if (!assets.isEmpty()) {
@@ -69,10 +60,10 @@ public class ApplicationDownloader implements Downloader{
         return downloadLink;
     }
 
-    private static String getTagName(String respuesta) {
+    private static String getTagName(String answer) {
         String tagName = "";
         try {
-            JSONObject jsonObject = new JSONObject(respuesta);
+            JSONObject jsonObject = new JSONObject(answer);
             tagName = jsonObject.getString("tag_name");
         }catch (JSONException e){
             Log.error("Error getting tag name", e);
