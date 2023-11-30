@@ -36,7 +36,7 @@ public class ApplicationDownloader implements Downloader{
             String downloadLink = getDownloadUrl(answer);
 
             Path dirPath = Paths.get(Main.USER_HOME, Main.MAIN_FOLDER);
-            Path filePath = dirPath.resolve("MineControlFx_"+ getTagName(answer) +".jar");
+            Path filePath = dirPath.resolve(getFileName(answer));
 
             downloadFile(downloadLink, filePath, "Application");
             Log.println("Application downloaded successfully");
@@ -47,7 +47,6 @@ public class ApplicationDownloader implements Downloader{
         String downloadLink = "";
         try {
             JSONObject jsonObject = new JSONObject(answer);
-
             JSONArray assets = jsonObject.getJSONArray("assets");
             if (!assets.isEmpty()) {
                 JSONObject primerAsset = assets.getJSONObject(0);
@@ -60,14 +59,18 @@ public class ApplicationDownloader implements Downloader{
         return downloadLink;
     }
 
-    private static String getTagName(String answer) {
-        String tagName = "";
+    public String getFileName(String answer) {
+        String fileName = "";
         try {
             JSONObject jsonObject = new JSONObject(answer);
-            tagName = jsonObject.getString("tag_name");
+            JSONArray assets = jsonObject.getJSONArray("assets");
+            if (!assets.isEmpty()) {
+                JSONObject primerAsset = assets.getJSONObject(0);
+                fileName = primerAsset.getString("name");
+            }
         }catch (JSONException e){
-            Log.error("Error getting tag name", e);
+            Log.error("Error getting file name", e);
         }
-        return tagName;
+        return fileName;
     }
 }
