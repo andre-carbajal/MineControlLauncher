@@ -31,7 +31,7 @@ public interface Downloader {
 
                 totalBytesRead += bytesRead;
                 double progress = (double) totalBytesRead / fileSize * 100;
-                Log.println(String.format(txt, " download progress: %.2f %%", progress));
+                Log.println(String.format("%s download progress: %.2f %%",txt, progress));
                 GuiInstance.getInstance().setLogLabel(String.format("Download progress: %.2f %%", progress));
             }
         } catch (IOException e) {
