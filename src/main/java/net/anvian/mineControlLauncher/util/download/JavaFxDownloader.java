@@ -49,14 +49,17 @@ public class JavaFxDownloader implements Downloader {
                     url = "https://download2.gluonhq.com/openjfx/17.0.9/openjfx-17.0.9_osx-aarch64_bin-sdk.zip";
                     GuiInstance.getInstance().setLogLabel("Downloading JavaFX for MacOS aarch64");
                 }
-                else
+                else {
+                    Log.error("Unsupported architecture");
                     throw new UnsupportedOperationException("Unsupported architecture");
+                }
                 break;
             case Linux:
                 url = "https://download2.gluonhq.com/openjfx/17.0.9/openjfx-17.0.9_linux-x64_bin-sdk.zip";
                 GuiInstance.getInstance().setLogLabel("Downloading JavaFX for Linux");
                 break;
             default:
+                Log.error("Unsupported operating system");
                 throw new UnsupportedOperationException("Unsupported operating system");
         }
         return url;
@@ -95,11 +98,13 @@ public class JavaFxDownloader implements Downloader {
                 File newFile = new File(dirPath.toFile(), zipEntry.getName());
                 if (zipEntry.isDirectory()) {
                     if (!newFile.isDirectory() && !newFile.mkdirs()) {
+                        Log.error("Failed to create directory " + newFile);
                         throw new IOException("Failed to create directory " + newFile);
                     }
                 } else {
                     File parent = newFile.getParentFile();
                     if (!parent.isDirectory() && !parent.mkdirs()) {
+                        Log.error("Failed to create directory " + parent);
                         throw new IOException("Failed to create directory " + parent);
                     }
                     try (FileOutputStream fos = new FileOutputStream(newFile)) {
