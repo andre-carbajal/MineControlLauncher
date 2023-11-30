@@ -9,11 +9,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.nio.ByteBuffer;
-import java.nio.channels.Channels;
-import java.nio.channels.ReadableByteChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -28,7 +23,7 @@ public class JavaFxDownloader implements Downloader {
         Path dirPath = Paths.get(Main.USER_HOME, Main.MAIN_FOLDER);
 
         Path filePath = dirPath.resolve(Main.JAVA_FX_FOLDER + ".zip");
-        downloadFile(url, filePath);
+        downloadFile(url, filePath, "JavaFx");
         unzipFile(filePath, dirPath);
         Files.delete(filePath);
     }
@@ -63,30 +58,6 @@ public class JavaFxDownloader implements Downloader {
                 throw new UnsupportedOperationException("Unsupported operating system");
         }
         return url;
-    }
-
-    private static void downloadFile(String url, Path filePath) throws IOException {
-        URL website = new URL(url);
-        URLConnection connection = website.openConnection();
-        int fileSize = connection.getContentLength();
-
-        try (ReadableByteChannel rbc = Channels.newChannel(connection.getInputStream());
-             FileOutputStream fos = new FileOutputStream(filePath.toFile())) {
-
-            ByteBuffer buffer = ByteBuffer.allocateDirect(1024);
-            int bytesRead;
-            int totalBytesRead = 0;
-            while ((bytesRead = rbc.read(buffer)) != -1) {
-                buffer.flip();
-                fos.getChannel().write(buffer);
-                buffer.clear();
-
-                totalBytesRead += bytesRead;
-                double progress = (double) totalBytesRead / fileSize * 100;
-                Log.println(String.format("Download progress: %.2f %%", progress));
-                GuiInstance.getInstance().setLogLabel(String.format("Download progress: %.2f %%", progress));
-            }
-        }
     }
 
     private static void unzipFile(Path filePath, Path dirPath) throws IOException {

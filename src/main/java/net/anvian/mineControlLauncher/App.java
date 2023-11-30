@@ -2,6 +2,7 @@ package net.anvian.mineControlLauncher;
 
 import net.anvian.mineControlLauncher.gui.GuiInstance;
 import net.anvian.mineControlLauncher.util.Log;
+import net.anvian.mineControlLauncher.util.download.ApplicationDownloader;
 import net.anvian.mineControlLauncher.util.download.Downloader;
 import net.anvian.mineControlLauncher.util.download.JavaFxDownloader;
 
@@ -13,8 +14,8 @@ import java.util.Comparator;
 import java.util.stream.Stream;
 
 public class App {
-
-    private static final Downloader downloader = new JavaFxDownloader();
+    private static final Downloader fXdownloader = new JavaFxDownloader();
+    private static final Downloader aplicationDownloader = new ApplicationDownloader();
 
     public static void init() {
         Path dirPath = Paths.get(Main.USER_HOME, Main.MAIN_FOLDER);
@@ -25,6 +26,14 @@ public class App {
             downloadJavaFxIfNecessary(dirPath);
         }
         GuiInstance.getInstance().setLogLabel("The application is about to run");
+        try {
+            GuiInstance.getInstance().setLogLabel("Init Aplication download");
+            aplicationDownloader.download();
+            GuiInstance.getInstance().setLogLabel("End aplication download");
+        } catch (IOException e) {
+            Log.error("Error", e);
+            throw new RuntimeException(e);
+        }
         runJarWithJavaFx(dirPath + "/MineControlFx.jar", dirPath.resolve(Main.JAVA_FX_FOLDER) + "/lib");
     }
 
@@ -41,7 +50,7 @@ public class App {
         try {
             Path folder = dirPath.resolve(Main.JAVA_FX_FOLDER);
             deleteDirectoryRecursively(folder);
-            downloader.download();
+            fXdownloader.download();
         } catch (IOException e) {
             Log.error("An error occurred while downloading JavaFX", e);
         }
