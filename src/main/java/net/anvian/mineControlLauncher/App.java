@@ -16,6 +16,7 @@ import java.util.stream.Stream;
 public class App {
     private static final Downloader fXdownloader = new JavaFxDownloader();
     private static final Downloader aplicationDownloader = new ApplicationDownloader();
+    private static final String JAR_FILE = "McPackGenerator-2.2.jar";
 
     public static void init() {
         Path dirPath = Paths.get(Main.USER_HOME, Main.MAIN_FOLDER);
@@ -25,16 +26,15 @@ public class App {
         if (!Files.exists(dirPath.resolve(Main.JAVA_FX_FOLDER)) || !JavaFxDownloader.checkJavaFxInstalledCorrectly()) {
             downloadJavaFxIfNecessary(dirPath);
         }
-        GuiInstance.getInstance().setLogLabel("The application is about to run");
         try {
             GuiInstance.getInstance().setLogLabel("Init Aplication download");
             aplicationDownloader.download();
-            GuiInstance.getInstance().setLogLabel("End aplication download");
         } catch (IOException e) {
             Log.error("Error", e);
             throw new RuntimeException(e);
         }
-        runJarWithJavaFx(dirPath + "/MineControlFx.jar", dirPath.resolve(Main.JAVA_FX_FOLDER) + "/lib");
+        GuiInstance.getInstance().setLogLabel("The application is about to run");
+        runJarWithJavaFx(dirPath);
     }
 
     private static void createDirectoriesAndDownloadJavaFxIfNecessary(Path dirPath) {
@@ -73,8 +73,11 @@ public class App {
         }
     }
 
-    private static void runJarWithJavaFx(String jarPath, String javaFxPath) {
+    private static void runJarWithJavaFx(Path dirPath) {
         try {
+            String jarPath = dirPath.resolve(JAR_FILE).toString();
+            String javaFxPath = dirPath.resolve(Main.JAVA_FX_FOLDER).resolve("/lib").toString();
+
             ProcessBuilder pb = new ProcessBuilder(
                     "java",
                     "--module-path", javaFxPath,

@@ -59,7 +59,7 @@ public class ApplicationDownloader implements Downloader{
         return downloadLink;
     }
 
-    public String getFileName(String answer) {
+    private String getFileName(String answer) {
         String fileName = "";
         try {
             JSONObject jsonObject = new JSONObject(answer);
