@@ -2,13 +2,9 @@ package net.anvian.mineControlLauncher.util.os;
 
 public class JavaVersion {
     public static final int VERSION_OFFSET = 44;
-
     private static final String JAVA_CLASS_VERSION = "java.class.version";
-
     private static final String JAVA_VM_SPEC_VERSION = "java.vm.specification.version";
-
     private static final int FALLBACK_VERSION = 8;
-
     private static int version = -1;
 
     public static int get() {
