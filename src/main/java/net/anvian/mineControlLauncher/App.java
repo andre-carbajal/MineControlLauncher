@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Comparator;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 public class App {
@@ -35,15 +36,24 @@ public class App {
         if (!Files.exists(dirPath.resolve(Main.JAVA_FX_FOLDER)) || !JavaFxDownloader.checkJavaFxInstalledCorrectly()) {
             downloadJavaFxIfNecessary(dirPath);
         }
+
         try {
             GuiInstance.getInstance().setLogLabel("Init Aplication download");
             aplicationDownloader.download();
         } catch (IOException e) {
-            Log.error("Error", e);
+            Log.error("Error downloading the application", e);
             throw new RuntimeException(e);
         }
+
         GuiInstance.getInstance().setLogLabel("The application is about to run");
-        runJarWithJavaFx(dirPath);
+
+        Optional<Path> mcPackJarFile = findMcPackJarFile(dirPath);
+        if (mcPackJarFile.isPresent()) {
+            GuiInstance.getInstance().setLogLabel("The application is about to run");
+            runJarWithJavaFx(dirPath, mcPackJarFile.get());
+        } else {
+            Log.error("No .jar file starting with 'McPack' found");
+        }
     }
 
     private static void createDirectoriesAndDownloadJavaFxIfNecessary(Path dirPath) {
@@ -82,9 +92,21 @@ public class App {
         }
     }
 
-    private static void runJarWithJavaFx(Path dirPath) {
+    private static Optional<Path> findMcPackJarFile(Path dirPath) {
+        try (Stream<Path> files = Files.walk(dirPath)) {
+            return files
+                    .filter(Files::isRegularFile)
+                    .filter(file -> file.getFileName().toString().startsWith("McPack") && file.getFileName().toString().endsWith(".jar"))
+                    .findFirst();
+        } catch (IOException e) {
+            Log.error("An error occurred while searching for the .jar file", e);
+            return Optional.empty();
+        }
+    }
+
+    private static void runJarWithJavaFx(Path dirPath, Path jarFile) {
         try {
-            String jarPath = dirPath.resolve(JAR_FILE).toString();
+            String jarPath = jarFile.toString();
             String javaFxPath = dirPath.resolve(Main.JAVA_FX_FOLDER).resolve("/lib").toString();
 
             ProcessBuilder pb = new ProcessBuilder(
