@@ -7,8 +7,7 @@ import net.anvian.mineControlLauncher.util.error.ErrorHandler;
 import java.io.IOException;
 
 public class LauncherChecker {
-    //TODO MineControlLauncher
-    private static final GithubApi githubApi = new GithubApi("andre-carbajal", "McPackGenerator");
+    private static final GithubApi githubApi = new GithubApi("andre-carbajal", "MineControlLauncher");
     private static final ErrorHandler errorHandler = new ErrorHandler();
 
     public void checkUpdate() throws IOException {
