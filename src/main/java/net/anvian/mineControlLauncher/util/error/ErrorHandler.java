@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class ErrorHandler {
-
     public void displayInitErrorAndExit() {
         String err = String.format(ERROR_MESSAGE, JavaVersion.get());
         Log.error(err);

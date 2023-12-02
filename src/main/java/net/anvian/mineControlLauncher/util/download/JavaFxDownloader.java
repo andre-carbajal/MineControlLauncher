@@ -16,7 +16,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public class JavaFxDownloader implements Downloader {
-
     @Override
     public void download() throws IOException {
         String url = selectUrl();
