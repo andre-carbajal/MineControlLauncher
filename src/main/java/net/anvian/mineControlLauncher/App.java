@@ -1,6 +1,7 @@
 package net.anvian.mineControlLauncher;
 
 import net.anvian.mineControlLauncher.gui.GuiInstance;
+import net.anvian.mineControlLauncher.util.LauncherChecker;
 import net.anvian.mineControlLauncher.util.Log;
 import net.anvian.mineControlLauncher.util.download.ApplicationDownloader;
 import net.anvian.mineControlLauncher.util.download.Downloader;
@@ -16,10 +17,18 @@ import java.util.stream.Stream;
 public class App {
     private static final Downloader fXdownloader = new JavaFxDownloader();
     private static final Downloader aplicationDownloader = new ApplicationDownloader();
-    private static final String JAR_FILE = "McPackGenerator-2.2.jar";
+    private static final LauncherChecker launcherChecker = new LauncherChecker();
 
     public static void init() {
         Path dirPath = Paths.get(Main.USER_HOME, Main.MAIN_FOLDER);
+
+        try {
+            launcherChecker.checkUpdate();
+        } catch (IOException e) {
+            Log.error("Error checking for updates", e);
+            throw new RuntimeException(e);
+        }
+
         if (!Files.exists(dirPath)) {
             createDirectoriesAndDownloadJavaFxIfNecessary(dirPath);
         }
