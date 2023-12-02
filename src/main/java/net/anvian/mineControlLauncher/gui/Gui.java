@@ -5,41 +5,31 @@ import java.awt.*;
 import java.util.Objects;
 
 public class Gui extends JFrame {
-
     private JProgressBar progressBar;
     private JLabel logLabel;
     private JLabel titleLabel;
 
     protected Gui(String version) {
         initComponents();
-
         setVisible(true);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         titleLabel.setText("MineControl Launcher v." + version);
         progressBar.setIndeterminate(true);
     }
 
     private void initComponents() {
-
         JPanel contend = new JPanel();
-        titleLabel = new JLabel();
-        JLabel icon = new JLabel();
-        logLabel = new JLabel();
-        progressBar = new JProgressBar();
-        
-        
+        titleLabel = initTitleLabel();
+        JLabel icon = initIcon();
+        logLabel = initLogLabel();
+        progressBar = initProgressBar();
+
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Launcher");
         setPreferredSize(new Dimension(300, 350));
         setResizable(false);
         setSize(new Dimension(300, 350));
-
-        titleLabel.setHorizontalAlignment(SwingConstants.LEFT);
-
-        icon.setHorizontalAlignment(SwingConstants.CENTER);
-        icon.setIcon(new ImageIcon(Objects.requireNonNull(Gui.class.getResource("/icon.png"))));
 
         GroupLayout contendLayout = new GroupLayout(contend);
         contend.setLayout(contendLayout);
@@ -84,6 +74,27 @@ public class Gui extends JFrame {
 
         pack();
         setLocationRelativeTo(null);
+    }
+
+    private JLabel initTitleLabel() {
+        JLabel titleLabel = new JLabel();
+        titleLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        return titleLabel;
+    }
+
+    private JLabel initIcon() {
+        JLabel icon = new JLabel();
+        icon.setHorizontalAlignment(SwingConstants.CENTER);
+        icon.setIcon(new ImageIcon(Objects.requireNonNull(Gui.class.getResource("/icon.png"))));
+        return icon;
+    }
+
+    private JLabel initLogLabel() {
+        return new JLabel();
+    }
+
+    private JProgressBar initProgressBar() {
+        return new JProgressBar();
     }
 
     public void setLogLabel(String text) {
