@@ -107,12 +107,12 @@ public class App {
     private static void runJarWithJavaFx(Path dirPath, Path jarFile) {
         try {
             String jarPath = jarFile.toString();
-            String javaFxPath = dirPath.resolve(Main.JAVA_FX_FOLDER).resolve("/lib").toString();
+            String javaFxPath = dirPath.resolve(Main.JAVA_FX_FOLDER).resolve("lib").toString();
 
             ProcessBuilder pb = new ProcessBuilder(
                     "java",
                     "--module-path", javaFxPath,
-                    "--add-modules", "javafx.controls,javafx.fxml",
+                    "--add-modules", "ALL-MODULE-PATH",
                     "-jar", jarPath
             );
 
