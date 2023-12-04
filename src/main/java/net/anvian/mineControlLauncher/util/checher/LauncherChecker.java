@@ -6,8 +6,8 @@ import net.anvian.mineControlLauncher.util.error.ErrorHandler;
 
 import java.io.IOException;
 
-public class LauncherChecker {
-    private static final GithubApi githubApi = new GithubApi("andre-carbajal", "MineControlLauncher");
+public class LauncherChecker implements Checker{
+    private static final GithubApi githubApi = new GithubApi("MineControlLauncher");
     private static final ErrorHandler errorHandler = new ErrorHandler();
 
     public void checkUpdate() throws IOException {

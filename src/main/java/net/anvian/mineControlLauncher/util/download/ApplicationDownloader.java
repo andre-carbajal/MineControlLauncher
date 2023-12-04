@@ -9,7 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class ApplicationDownloader implements Downloader{
-    private static final GithubApi githubApi = new GithubApi("andre-carbajal", "McPackGenerator");
+    private static final GithubApi githubApi = new GithubApi("McPackGenerator");
 
     @Override
     public void download() throws IOException {

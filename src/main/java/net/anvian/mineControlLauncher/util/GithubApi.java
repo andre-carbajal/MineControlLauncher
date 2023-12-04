@@ -12,11 +12,9 @@ import java.util.Objects;
 
 public class GithubApi {
     private static final OkHttpClient client = new OkHttpClient();
-    private final String user;
     private final String repository_name;
 
-    public GithubApi(String user, String repository_name) {
-        this.user = user;
+    public GithubApi(String repository_name) {
         this.repository_name = repository_name;
     }
 
@@ -40,6 +38,7 @@ public class GithubApi {
     }
 
     private String answer() throws IOException {
+        String user = "andre_carbajal";
         String urlAPI = String.format("https://api.github.com/repos/%s/%s/releases/latest", user, repository_name);
         Request request = new Request.Builder().url(urlAPI).build();
 
