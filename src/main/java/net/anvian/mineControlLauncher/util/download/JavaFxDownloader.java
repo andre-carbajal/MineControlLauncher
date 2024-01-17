@@ -35,15 +35,13 @@ public class JavaFxDownloader implements Downloader {
                 GuiInstance.getInstance().setLogLabel("Downloading JavaFX for Windows");
                 break;
             case MacOS:
-                if (OsChecker.getArchitectureType() == OsChecker.ArchType.amd64){
+                if (OsChecker.getArchitectureType() == OsChecker.ArchType.amd64) {
                     url = "https://download2.gluonhq.com/openjfx/17.0.9/openjfx-17.0.9_osx-x64_bin-sdk.zip";
                     GuiInstance.getInstance().setLogLabel("Downloading JavaFX for MacOS amd64");
-                }
-                else if (OsChecker.getArchitectureType() == OsChecker.ArchType.aarch64){
+                } else if (OsChecker.getArchitectureType() == OsChecker.ArchType.aarch64) {
                     url = "https://download2.gluonhq.com/openjfx/17.0.9/openjfx-17.0.9_osx-aarch64_bin-sdk.zip";
                     GuiInstance.getInstance().setLogLabel("Downloading JavaFX for MacOS aarch64");
-                }
-                else {
+                } else {
                     Log.error("Unsupported architecture");
                     throw new UnsupportedOperationException("Unsupported architecture");
                 }
@@ -88,34 +86,6 @@ public class JavaFxDownloader implements Downloader {
                 zipEntry = zis.getNextEntry();
             }
             zis.closeEntry();
-        }
-    }
-
-    public static boolean checkJavaFxInstalledCorrectly() {
-        Path dirPath = Paths.get(Main.USER_HOME, Main.MAIN_FOLDER, Main.JAVA_FX_FOLDER);
-        Path dirPathLib = Paths.get(Main.USER_HOME, Main.MAIN_FOLDER, Main.JAVA_FX_FOLDER, "lib");
-        String[] requiredFiles = {
-                "javafx.base.jar",
-                "javafx.controls.jar",
-                "javafx.fxml.jar",
-                "javafx.graphics.jar",
-                "javafx.media.jar",
-                "javafx.properties",
-                "javafx.swing.jar",
-                "javafx.web.jar",
-                "javafx-swt.jar"
-        };
-
-        if (Files.exists(dirPath) && Files.exists(dirPathLib)) {
-            for (String file : requiredFiles) {
-                Path filePath = dirPathLib.resolve(file);
-                if (!Files.exists(filePath)) {
-                    return false;
-                }
-            }
-            return true;
-        } else {
-            return false;
         }
     }
 }

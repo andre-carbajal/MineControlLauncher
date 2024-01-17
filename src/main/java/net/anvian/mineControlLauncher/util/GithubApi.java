@@ -38,7 +38,7 @@ public class GithubApi {
     }
 
     private String answer() throws IOException {
-        String user = "andre_carbajal";
+        String user = "andre-carbajal";
         String urlAPI = String.format("https://api.github.com/repos/%s/%s/releases/latest", user, repository_name);
         Request request = new Request.Builder().url(urlAPI).build();
 

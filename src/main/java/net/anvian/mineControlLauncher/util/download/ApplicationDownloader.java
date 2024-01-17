@@ -8,8 +8,9 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class ApplicationDownloader implements Downloader{
-    private static final GithubApi githubApi = new GithubApi("McPackGenerator");
+public class ApplicationDownloader implements Downloader {
+    //TODO canche repository name
+    private static final GithubApi githubApi = new GithubApi("MineControlLauncher");
 
     @Override
     public void download() throws IOException {
