@@ -9,8 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class ApplicationDownloader implements Downloader {
-    //TODO canche repository name
-    private static final GithubApi githubApi = new GithubApi("MineControlLauncher");
+    private static final GithubApi githubApi = new GithubApi("MineControlFx");
 
     @Override
     public void download() throws IOException {
