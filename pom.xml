@@ -6,7 +6,7 @@
 
     <groupId>net.anvian</groupId>
     <artifactId>MineControlLauncher</artifactId>
-    <version>0.1</version>
+    <version>0.3</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -37,6 +37,11 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -72,11 +77,12 @@
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
+                    <appendAssemblyId>false</appendAssemblyId>
                 </configuration>
                 <executions>
                     <execution>
                         <id>make-assembly</id>
-                        <phase>package</phase>
+                        <phase>compile</phase>
                         <goals>
                             <goal>single</goal>
                         </goals>
@@ -85,5 +91,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
