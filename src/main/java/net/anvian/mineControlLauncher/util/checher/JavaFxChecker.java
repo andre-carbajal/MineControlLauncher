@@ -4,6 +4,7 @@ import net.anvian.mineControlLauncher.Main;
 import net.anvian.mineControlLauncher.util.Log;
 import net.anvian.mineControlLauncher.util.download.Downloader;
 import net.anvian.mineControlLauncher.util.download.JavaFxDownloader;
+import net.anvian.mineControlLauncher.util.os.OsChecker;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -28,9 +29,17 @@ public class JavaFxChecker implements Checker {
 
     private static boolean checkJavaFxInstalledCorrectly(Path dirPath) {
         Path javaFxPath = Paths.get(String.valueOf(dirPath.resolve(Main.JAVA_FX_FOLDER)));
-        return Files.exists(javaFxPath.resolve("bin")) &&
-                Files.exists(javaFxPath.resolve("legal")) &&
-                Files.exists(javaFxPath.resolve("lib"));
+        if (OsChecker.getOperatingSystemType() == OsChecker.OSType.Windows){
+            return Files.exists(javaFxPath.resolve("bin")) &&
+                    Files.exists(javaFxPath.resolve("legal")) &&
+                    Files.exists(javaFxPath.resolve("lib"));
+        } else if (OsChecker.getOperatingSystemType() == OsChecker.OSType.MacOS || OsChecker.getOperatingSystemType() == OsChecker.OSType.Linux) {
+            return Files.exists(javaFxPath.resolve("legal")) &&
+                    Files.exists(javaFxPath.resolve("lib"));
+        } else {
+            return false;
+        }
+
     }
 
     private static void deleteDirectoryRecursively(Path path) throws IOException {
