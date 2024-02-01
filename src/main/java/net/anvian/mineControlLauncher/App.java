@@ -18,16 +18,16 @@ public class App {
     private static final RunAppWithJavaFx runAppWithJavaFx = new RunAppWithJavaFx();
 
     public static void init() throws IOException {
-        Path dirPath = Paths.get(Main.USER_HOME, Main.MAIN_FOLDER);
+        Path dirPath = Paths.get(Constants.USER_HOME, Constants.MAIN_FOLDER);
 
-        checkAndLog(launcherChecker, dirPath);
-        checkAndLog(folderChecker, dirPath);
-        checkAndLog(javaFxChecker, dirPath);
-        checkAndLog(applicationChecker, dirPath);
+        checkAndClearLog(launcherChecker, dirPath);
+        checkAndClearLog(folderChecker, dirPath);
+        checkAndClearLog(javaFxChecker, dirPath);
+        checkAndClearLog(applicationChecker, dirPath);
         runAppWithJavaFx.init(dirPath);
     }
 
-    private static void checkAndLog(Checker checker, Path dirPath) throws IOException {
+    private static void checkAndClearLog(Checker checker, Path dirPath) throws IOException {
         checker.check(dirPath);
         guiInstance.setLogLabel("");
     }
