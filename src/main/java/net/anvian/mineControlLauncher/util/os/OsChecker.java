@@ -8,7 +8,7 @@ public class OsChecker {
     }
 
     public enum ArchType {
-        amd64, aarch64, Other
+        amd64, aarch64, x86_64 ,Other
     }
 
     protected static OSType detectedOS;
@@ -33,12 +33,11 @@ public class OsChecker {
     public static ArchType getArchitectureType() {
         if (detectedArch == null) {
             String arch = System.getProperty("os.arch");
-            if (arch.equals("amd64")) {
-                detectedArch = ArchType.amd64;
-            } else if (arch.equals("aarch64")) {
-                detectedArch = ArchType.aarch64;
-            } else {
-                detectedArch = ArchType.Other;
+            switch (arch) {
+                case "amd64" -> detectedArch = ArchType.amd64;
+                case "aarch64" -> detectedArch = ArchType.aarch64;
+                case "x86_64" -> detectedArch = ArchType.x86_64;
+                default -> detectedArch = ArchType.Other;
             }
         }
         return detectedArch;

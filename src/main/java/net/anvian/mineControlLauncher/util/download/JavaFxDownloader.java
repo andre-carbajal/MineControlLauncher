@@ -35,14 +35,15 @@ public class JavaFxDownloader implements Downloader {
                 GuiInstance.getInstance().setLogLabel("Downloading JavaFX for Windows");
                 break;
             case MacOS:
-                if (OsChecker.getArchitectureType() == OsChecker.ArchType.amd64) {
+                if (OsChecker.getArchitectureType() == OsChecker.ArchType.x86_64) {
                     url = "https://download2.gluonhq.com/openjfx/17.0.9/openjfx-17.0.9_osx-x64_bin-sdk.zip";
-                    GuiInstance.getInstance().setLogLabel("Downloading JavaFX for MacOS amd64");
+                    GuiInstance.getInstance().setLogLabel("Downloading JavaFX for MacOS x86_64");
                 } else if (OsChecker.getArchitectureType() == OsChecker.ArchType.aarch64) {
                     url = "https://download2.gluonhq.com/openjfx/17.0.9/openjfx-17.0.9_osx-aarch64_bin-sdk.zip";
                     GuiInstance.getInstance().setLogLabel("Downloading JavaFX for MacOS aarch64");
                 } else {
                     Log.error("Unsupported architecture");
+                    GuiInstance.getInstance().setLogLabel("Your architecture is not supported");
                     throw new UnsupportedOperationException("Unsupported architecture");
                 }
                 break;

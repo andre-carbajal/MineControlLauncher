@@ -10,7 +10,7 @@ public class Main {
     public static final String USER_HOME = System.getProperty("user.home");
     public static final String MAIN_FOLDER = ".mineControl";
     public static final String JAVA_FX_FOLDER = "javafx-sdk-17.0.9";
-    public static final String LAUNCHER_VERSION = "0.2";
+    public static final String LAUNCHER_VERSION = "0.4";
 
     private static final ErrorHandler errorHandler = new ErrorHandler();
 
