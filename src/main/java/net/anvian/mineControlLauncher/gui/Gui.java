@@ -7,26 +7,23 @@ import java.util.Objects;
 public class Gui extends JFrame {
     private JProgressBar progressBar;
     private JLabel logLabel;
-    private JLabel titleLabel;
 
     protected Gui(String version) {
-        initComponents();
+        initComponents(version);
         setVisible(true);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        titleLabel.setText("MineControl Launcher v." + version);
         progressBar.setIndeterminate(true);
     }
 
-    private void initComponents() {
+    private void initComponents(String version) {
         JPanel contend = new JPanel();
-        titleLabel = initTitleLabel();
         JLabel icon = initIcon();
         logLabel = initLogLabel();
         progressBar = initProgressBar();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Launcher");
+        setTitle("MineControl " + version);
         setPreferredSize(new Dimension(300, 350));
         setResizable(false);
         setSize(new Dimension(300, 350));
@@ -44,14 +41,12 @@ public class Gui extends JFrame {
                                 .addContainerGap())
                         .addGroup(contendLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(titleLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(6, 6, 6))
         );
         contendLayout.setVerticalGroup(
                 contendLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(contendLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(titleLabel)
                                 .addGap(51, 51, 51)
                                 .addComponent(icon)
                                 .addGap(38, 38, 38)
@@ -74,12 +69,6 @@ public class Gui extends JFrame {
 
         pack();
         setLocationRelativeTo(null);
-    }
-
-    private JLabel initTitleLabel() {
-        JLabel titleLabel = new JLabel();
-        titleLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        return titleLabel;
     }
 
     private JLabel initIcon() {
