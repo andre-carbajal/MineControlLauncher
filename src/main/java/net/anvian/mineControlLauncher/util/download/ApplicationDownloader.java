@@ -1,6 +1,6 @@
 package net.anvian.mineControlLauncher.util.download;
 
-import net.anvian.mineControlLauncher.Main;
+import net.anvian.mineControlLauncher.Constants;
 import net.anvian.mineControlLauncher.util.GithubApi;
 import net.anvian.mineControlLauncher.util.Log;
 
@@ -13,7 +13,7 @@ public class ApplicationDownloader implements Downloader {
 
     @Override
     public void download() throws IOException {
-        Path dirPath = Paths.get(Main.USER_HOME, Main.MAIN_FOLDER);
+        Path dirPath = Paths.get(Constants.USER_HOME, Constants.MAIN_FOLDER);
         downloadFile(githubApi.getDownloadUrl(), dirPath.resolve(githubApi.getFileName()), "Application");
         Log.println("Application downloaded successfully");
     }

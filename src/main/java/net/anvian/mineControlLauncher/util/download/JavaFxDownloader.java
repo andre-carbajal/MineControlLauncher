@@ -1,6 +1,6 @@
 package net.anvian.mineControlLauncher.util.download;
 
-import net.anvian.mineControlLauncher.Main;
+import net.anvian.mineControlLauncher.Constants;
 import net.anvian.mineControlLauncher.gui.GuiInstance;
 import net.anvian.mineControlLauncher.util.Log;
 import net.anvian.mineControlLauncher.util.os.OsChecker;
@@ -19,9 +19,9 @@ public class JavaFxDownloader implements Downloader {
     @Override
     public void download() throws IOException {
         String url = selectUrl();
-        Path dirPath = Paths.get(Main.USER_HOME, Main.MAIN_FOLDER);
+        Path dirPath = Paths.get(Constants.USER_HOME, Constants.MAIN_FOLDER);
 
-        Path filePath = dirPath.resolve(Main.JAVA_FX_FOLDER + ".zip");
+        Path filePath = dirPath.resolve(Constants.JAVA_FX_FOLDER + ".zip");
         downloadFile(url, filePath, "JavaFx");
         unzipFile(filePath, dirPath);
         Files.delete(filePath);
@@ -53,6 +53,7 @@ public class JavaFxDownloader implements Downloader {
                 break;
             default:
                 Log.error("Unsupported operating system");
+                GuiInstance.getInstance().setLogLabel("Your operating system is not supported");
                 throw new UnsupportedOperationException("Unsupported operating system");
         }
         return url;

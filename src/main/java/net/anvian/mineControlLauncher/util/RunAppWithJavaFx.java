@@ -1,6 +1,6 @@
 package net.anvian.mineControlLauncher.util;
 
-import net.anvian.mineControlLauncher.Main;
+import net.anvian.mineControlLauncher.Constants;
 import net.anvian.mineControlLauncher.gui.GuiInstance;
 
 import java.io.IOException;
@@ -31,7 +31,7 @@ public class RunAppWithJavaFx {
 
     private void runJarWithJavaFx(Path dirPath, Path jarFile) throws IOException {
         String jarPath = jarFile.toString();
-        String javaFxPath = dirPath.resolve(Main.JAVA_FX_FOLDER).resolve("lib").toString();
+        String javaFxPath = dirPath.resolve(Constants.JAVA_FX_FOLDER).resolve("lib").toString();
 
         ProcessBuilder pb = new ProcessBuilder(
                 "java",

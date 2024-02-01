@@ -1,6 +1,6 @@
 package net.anvian.mineControlLauncher.util.checher;
 
-import net.anvian.mineControlLauncher.Main;
+import net.anvian.mineControlLauncher.Constants;
 import net.anvian.mineControlLauncher.util.Log;
 import net.anvian.mineControlLauncher.util.download.Downloader;
 import net.anvian.mineControlLauncher.util.download.JavaFxDownloader;
@@ -19,17 +19,17 @@ public class JavaFxChecker implements Checker {
     @Override
     public void check(Path dirPath) throws IOException {
         if (!checkJavaFxInstalledCorrectly(dirPath))
-            deleteDirectoryRecursively(dirPath.resolve(Main.JAVA_FX_FOLDER));
+            deleteDirectoryRecursively(dirPath.resolve(Constants.JAVA_FX_FOLDER));
 
-        if (!Files.exists(dirPath.resolve(Main.JAVA_FX_FOLDER)))
+        if (!Files.exists(dirPath.resolve(Constants.JAVA_FX_FOLDER)))
             fXdownloader.download();
 
         Log.println("JavaFxChecker: JavaFx is installed correctly");
     }
 
     private static boolean checkJavaFxInstalledCorrectly(Path dirPath) {
-        Path javaFxPath = Paths.get(String.valueOf(dirPath.resolve(Main.JAVA_FX_FOLDER)));
-        if (OsChecker.getOperatingSystemType() == OsChecker.OSType.Windows){
+        Path javaFxPath = Paths.get(String.valueOf(dirPath.resolve(Constants.JAVA_FX_FOLDER)));
+        if (OsChecker.getOperatingSystemType() == OsChecker.OSType.Windows) {
             return Files.exists(javaFxPath.resolve("bin")) &&
                     Files.exists(javaFxPath.resolve("legal")) &&
                     Files.exists(javaFxPath.resolve("lib"));

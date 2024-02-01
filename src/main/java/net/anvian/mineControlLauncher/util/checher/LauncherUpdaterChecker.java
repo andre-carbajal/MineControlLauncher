@@ -1,6 +1,6 @@
 package net.anvian.mineControlLauncher.util.checher;
 
-import net.anvian.mineControlLauncher.Main;
+import net.anvian.mineControlLauncher.Constants;
 import net.anvian.mineControlLauncher.gui.GuiInstance;
 import net.anvian.mineControlLauncher.util.GithubApi;
 import net.anvian.mineControlLauncher.util.Log;
@@ -16,7 +16,7 @@ public class LauncherUpdaterChecker implements Checker {
     @Override
     public void check(Path dirPath) throws IOException {
         String latestTag = githubApi.getTag();
-        String currentTag = Main.LAUNCHER_VERSION;
+        String currentTag = Constants.LAUNCHER_VERSION;
 
         if (latestTag.equals(currentTag)) {
             Log.println("Launcher is up to date");
