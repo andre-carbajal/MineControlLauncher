@@ -39,16 +39,16 @@ public class ApplicationChecker implements Checker {
         Log.println("Application was checked");
     }
 
-    private boolean applicationExists(Path dirPath) {
+    private boolean applicationExists(Path dirPath) throws IOException {
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(dirPath, "MineControlFx*")) {
             return stream.iterator().hasNext();
         } catch (IOException e) {
-            Log.error("Error while checking for existing application");
-            throw new RuntimeException(e);
+            Log.error("Error while checking for existing application", e);
+            throw e;
         }
     }
 
-    private String getFileVersion(Path dirPath) {
+    private String getFileVersion(Path dirPath) throws IOException {
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(dirPath, "MineControlFx*")) {
             for (Path entry : stream) {
                 Matcher matcher = versionPattern.matcher(entry.getFileName().toString());
@@ -57,13 +57,13 @@ public class ApplicationChecker implements Checker {
                 }
             }
         } catch (IOException e) {
-            Log.error("Error while getting file version");
-            throw new RuntimeException(e);
+            Log.error("Error while getting file version", e);
+            throw e;
         }
         return null;
     }
 
-    private void deleteExistingVersion(Path dirPath) {
+    private void deleteExistingVersion(Path dirPath) throws IOException {
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(dirPath, "MineControlFx*")) {
             for (Path entry : stream) {
                 Files.delete(entry);
@@ -71,8 +71,8 @@ public class ApplicationChecker implements Checker {
                 Log.println("Deleted outdated application: " + entry.getFileName());
             }
         } catch (IOException e) {
-            Log.error("Error while deleting existing application");
-            throw new RuntimeException(e);
+            Log.error("Error while deleting existing application", e);
+            throw e;
         }
     }
 }
