@@ -30,11 +30,12 @@ public class RunAppWithJavaFx {
     }
 
     private void runJarWithJavaFx(Path dirPath, Path jarFile) throws IOException {
-        String jarPath = jarFile.toString();
+        String javaPath = System.getProperty("java.home") + "/bin/java";
         String javaFxPath = dirPath.resolve(Constants.JAVA_FX_FOLDER).resolve("lib").toString();
+        String jarPath = jarFile.toString();
 
         ProcessBuilder pb = new ProcessBuilder(
-                "java",
+                javaPath,
                 "--module-path", javaFxPath,
                 "--add-modules", "ALL-MODULE-PATH",
                 "-jar", jarPath
