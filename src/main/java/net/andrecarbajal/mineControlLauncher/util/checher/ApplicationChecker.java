@@ -1,10 +1,10 @@
-package net.anvian.mineControlLauncher.util.checher;
+package net.andrecarbajal.mineControlLauncher.util.checher;
 
-import net.anvian.mineControlLauncher.gui.Gui;
-import net.anvian.mineControlLauncher.gui.GuiInstance;
-import net.anvian.mineControlLauncher.util.GithubApi;
-import net.anvian.mineControlLauncher.util.Log;
-import net.anvian.mineControlLauncher.util.download.ApplicationDownloader;
+import net.andrecarbajal.mineControlLauncher.gui.Gui;
+import net.andrecarbajal.mineControlLauncher.gui.GuiInstance;
+import net.andrecarbajal.mineControlLauncher.util.GithubApi;
+import net.andrecarbajal.mineControlLauncher.util.Log;
+import net.andrecarbajal.mineControlLauncher.util.download.ApplicationDownloader;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream;

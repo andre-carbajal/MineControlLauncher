@@ -1,4 +1,4 @@
-package net.anvian.mineControlLauncher.util;
+package net.andrecarbajal.mineControlLauncher.util;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

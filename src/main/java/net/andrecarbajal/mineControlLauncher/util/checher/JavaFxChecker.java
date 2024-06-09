@@ -1,10 +1,10 @@
-package net.anvian.mineControlLauncher.util.checher;
+package net.andrecarbajal.mineControlLauncher.util.checher;
 
-import net.anvian.mineControlLauncher.Constants;
-import net.anvian.mineControlLauncher.util.Log;
-import net.anvian.mineControlLauncher.util.download.Downloader;
-import net.anvian.mineControlLauncher.util.download.JavaFxDownloader;
-import net.anvian.mineControlLauncher.util.os.OsChecker;
+import net.andrecarbajal.mineControlLauncher.Constants;
+import net.andrecarbajal.mineControlLauncher.util.Log;
+import net.andrecarbajal.mineControlLauncher.util.download.Downloader;
+import net.andrecarbajal.mineControlLauncher.util.download.JavaFxDownloader;
+import net.andrecarbajal.mineControlLauncher.util.os.OsChecker;
 
 import java.io.IOException;
 import java.nio.file.Files;

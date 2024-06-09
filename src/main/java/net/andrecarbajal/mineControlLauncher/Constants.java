@@ -1,4 +1,4 @@
-package net.anvian.mineControlLauncher;
+package net.andrecarbajal.mineControlLauncher;
 
 public class Constants {
     public static final String USER_HOME = System.getProperty("user.home");

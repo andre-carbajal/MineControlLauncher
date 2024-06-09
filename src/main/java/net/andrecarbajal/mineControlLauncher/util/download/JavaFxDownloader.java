@@ -1,9 +1,9 @@
-package net.anvian.mineControlLauncher.util.download;
+package net.andrecarbajal.mineControlLauncher.util.download;
 
-import net.anvian.mineControlLauncher.Constants;
-import net.anvian.mineControlLauncher.gui.GuiInstance;
-import net.anvian.mineControlLauncher.util.Log;
-import net.anvian.mineControlLauncher.util.os.OsChecker;
+import net.andrecarbajal.mineControlLauncher.Constants;
+import net.andrecarbajal.mineControlLauncher.gui.GuiInstance;
+import net.andrecarbajal.mineControlLauncher.util.Log;
+import net.andrecarbajal.mineControlLauncher.util.os.OsChecker;
 
 import java.io.File;
 import java.io.FileInputStream;

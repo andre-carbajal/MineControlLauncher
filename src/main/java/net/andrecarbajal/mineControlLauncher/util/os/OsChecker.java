@@ -1,4 +1,4 @@
-package net.anvian.mineControlLauncher.util.os;
+package net.andrecarbajal.mineControlLauncher.util.os;
 
 import java.util.Locale;
 

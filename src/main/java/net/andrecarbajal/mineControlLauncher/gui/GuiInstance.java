@@ -1,6 +1,6 @@
-package net.anvian.mineControlLauncher.gui;
+package net.andrecarbajal.mineControlLauncher.gui;
 
-import net.anvian.mineControlLauncher.Constants;
+import net.andrecarbajal.mineControlLauncher.Constants;
 
 public class GuiInstance {
     private static Gui instance;

@@ -1,7 +1,7 @@
-package net.anvian.mineControlLauncher.util;
+package net.andrecarbajal.mineControlLauncher.util;
 
-import net.anvian.mineControlLauncher.Constants;
-import net.anvian.mineControlLauncher.gui.GuiInstance;
+import net.andrecarbajal.mineControlLauncher.Constants;
+import net.andrecarbajal.mineControlLauncher.gui.GuiInstance;
 
 import java.io.IOException;
 import java.nio.file.Files;

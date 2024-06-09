@@ -1,9 +1,9 @@
-package net.anvian.mineControlLauncher;
+package net.andrecarbajal.mineControlLauncher;
 
-import net.anvian.mineControlLauncher.gui.Gui;
-import net.anvian.mineControlLauncher.gui.GuiInstance;
-import net.anvian.mineControlLauncher.util.RunAppWithJavaFx;
-import net.anvian.mineControlLauncher.util.checher.*;
+import net.andrecarbajal.mineControlLauncher.gui.Gui;
+import net.andrecarbajal.mineControlLauncher.gui.GuiInstance;
+import net.andrecarbajal.mineControlLauncher.util.RunAppWithJavaFx;
+import net.andrecarbajal.mineControlLauncher.util.checher.*;
 
 import java.io.IOException;
 import java.nio.file.Path;

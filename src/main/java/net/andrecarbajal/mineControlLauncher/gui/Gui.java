@@ -1,4 +1,4 @@
-package net.anvian.mineControlLauncher.gui;
+package net.andrecarbajal.mineControlLauncher.gui;
 
 import javax.swing.*;
 import java.awt.*;

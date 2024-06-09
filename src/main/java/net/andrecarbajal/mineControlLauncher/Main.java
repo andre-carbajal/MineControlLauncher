@@ -1,8 +1,8 @@
-package net.anvian.mineControlLauncher;
+package net.andrecarbajal.mineControlLauncher;
 
-import net.anvian.mineControlLauncher.gui.GuiInstance;
-import net.anvian.mineControlLauncher.util.error.ErrorHandler;
-import net.anvian.mineControlLauncher.util.os.JavaVersion;
+import net.andrecarbajal.mineControlLauncher.gui.GuiInstance;
+import net.andrecarbajal.mineControlLauncher.util.error.ErrorHandler;
+import net.andrecarbajal.mineControlLauncher.util.os.JavaVersion;
 
 import java.io.IOException;
 

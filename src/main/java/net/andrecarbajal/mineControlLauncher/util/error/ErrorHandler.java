@@ -1,7 +1,7 @@
-package net.anvian.mineControlLauncher.util.error;
+package net.andrecarbajal.mineControlLauncher.util.error;
 
-import net.anvian.mineControlLauncher.util.Log;
-import net.anvian.mineControlLauncher.util.os.JavaVersion;
+import net.andrecarbajal.mineControlLauncher.util.Log;
+import net.andrecarbajal.mineControlLauncher.util.os.JavaVersion;
 
 import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;

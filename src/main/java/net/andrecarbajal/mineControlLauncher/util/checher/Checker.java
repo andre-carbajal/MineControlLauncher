@@ -1,4 +1,4 @@
-package net.anvian.mineControlLauncher.util.checher;
+package net.andrecarbajal.mineControlLauncher.util.checher;
 
 import java.io.IOException;
 import java.nio.file.Path;

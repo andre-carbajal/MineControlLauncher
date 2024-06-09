@@ -1,6 +1,6 @@
-package net.anvian.mineControlLauncher.util.checher;
+package net.andrecarbajal.mineControlLauncher.util.checher;
 
-import net.anvian.mineControlLauncher.util.Log;
+import net.andrecarbajal.mineControlLauncher.util.Log;
 
 import java.io.IOException;
 import java.nio.file.Files;

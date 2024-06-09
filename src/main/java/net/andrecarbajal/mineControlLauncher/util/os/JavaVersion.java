@@ -1,4 +1,4 @@
-package net.anvian.mineControlLauncher.util.os;
+package net.andrecarbajal.mineControlLauncher.util.os;
 
 public class JavaVersion {
     private static final int VERSION_OFFSET = 44;
